@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:silver_nugget",
+        "count": 9
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:silver_ingot"
+            }
+        ]
+    ]
+}

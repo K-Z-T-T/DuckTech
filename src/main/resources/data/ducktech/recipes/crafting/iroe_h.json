@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:iron_hull",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:iron_plate"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:iron_plate"
+            }
+        ]
+    ]
+}

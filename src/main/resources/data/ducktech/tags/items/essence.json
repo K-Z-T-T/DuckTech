@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:crushed_essence",
+    "ducktech:advance_crushed_essence",
+    "ducktech:air_essence",
+    "ducktech:basic_essence",
+    "ducktech:void_essence",
+    "ducktech:thermal_essence",
+    "ducktech:frozen_essence",
+    "ducktech:duck_essence"
+  ]
+}

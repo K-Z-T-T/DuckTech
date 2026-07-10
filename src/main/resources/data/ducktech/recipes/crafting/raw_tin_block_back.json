@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:raw_tin",
+        "count": 9
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:raw_tin_block"
+            }
+        ]
+    ]
+}

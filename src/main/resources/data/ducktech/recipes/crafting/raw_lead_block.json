@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:raw_lead"
+    }
+  },
+  "result": {
+    "item": "ducktech:raw_lead_block"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "ducktech:shredder",
+  "input": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item" : "ducktech:crushed_essence"
+    }
+  ],
+  "output": [
+    {
+      "item": "ducktech:golden_dust",
+      "count": 1
+    }
+  ]
+}

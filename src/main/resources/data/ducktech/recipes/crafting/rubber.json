@@ -1,0 +1,19 @@
+{
+    "type": "recipesapi:damage_tool_shapeless",
+    "result": {
+        "item": "ducktech:duck_essence",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:rubber_duck"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:sacrificial_knife"
+            }
+        ]
+    ]
+}

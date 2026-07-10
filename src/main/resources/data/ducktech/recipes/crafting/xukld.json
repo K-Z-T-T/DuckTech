@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "ABA",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:void_essence"
+    },
+    "B": {
+      "item": "minecraft:black_concrete"
+    }
+  },
+  "result": {
+    "item": "ducktech:void_hopper"
+  }
+}

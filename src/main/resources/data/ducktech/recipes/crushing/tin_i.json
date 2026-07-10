@@ -1,0 +1,17 @@
+{
+  "type": "ducktech:shredder",
+  "input": [
+    {
+      "item": "ducktech:tin_ingot"
+    },
+    {
+      "item" : "ducktech:crushed_essence"
+    }
+  ],
+  "output": [
+    {
+      "item": "ducktech:tin_dust",
+      "count": 1
+    }
+  ]
+}

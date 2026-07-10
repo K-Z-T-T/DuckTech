@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA ",
+    " AA",
+    " AA"
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:yellow_rubber"
+    }
+  },
+  "result": {
+    "item": "ducktech:rubber_duck",
+    "count": 1
+  }
+}

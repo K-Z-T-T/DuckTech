@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "ducktech:block/advance_shredder"
+    },
+    "facing=south": {
+      "model": "ducktech:block/advance_shredder",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "ducktech:block/advance_shredder",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "ducktech:block/advance_shredder",
+      "y": 270
+    }
+  }
+}

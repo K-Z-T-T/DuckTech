@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:aluminum_ore",
+    "ducktech:lead_ore",
+    "ducktech:silver_ore",
+    "ducktech:tin_ore"
+  ]
+}

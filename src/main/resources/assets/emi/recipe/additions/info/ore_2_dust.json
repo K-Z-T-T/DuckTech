@@ -1,0 +1,13 @@
+{
+  "type":"emi:info",
+  "stacks":[
+    "item:ducktech:iron_dust",
+    "item:ducktech:golden_dust",
+    "item:ducktech:copper_dust",
+    "item:ducktech:aluminum_dust",
+    "item:ducktech:lead_dust",
+    "item:ducktech:silver_dust",
+    "item:ducktech:tin_dust"
+  ],
+  "text":"emi.info.ore_2_dust"
+}

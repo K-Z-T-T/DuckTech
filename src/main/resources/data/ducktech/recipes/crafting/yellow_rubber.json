@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:yellow_rubber",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:rubber"
+            }
+        ],
+        [
+            {
+                "tag": "forge:dyes/yellow"
+            }
+        ]
+    ]
+}

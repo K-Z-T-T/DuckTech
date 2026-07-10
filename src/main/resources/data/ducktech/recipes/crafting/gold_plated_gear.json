@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:gold_plated_gear",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:iron_gear"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:golden_dust"
+            }
+        ]
+    ]
+}

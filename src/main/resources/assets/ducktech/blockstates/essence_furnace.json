@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "ducktech:block/essence_furnace"
+    },
+    "facing=south": {
+      "model": "ducktech:block/essence_furnace",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "ducktech:block/essence_furnace",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "ducktech:block/essence_furnace",
+      "y": 270
+    }
+  }
+}

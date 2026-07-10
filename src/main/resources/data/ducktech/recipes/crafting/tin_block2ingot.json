@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:tin_ingot",
+        "count": 9
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:tin_block"
+            }
+        ]
+    ]
+}

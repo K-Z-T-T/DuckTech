@@ -1,0 +1,5 @@
+{
+  "emi.info.ore_2_dust": "Machine: Crusher\nInput: xxx Ore, Crushed Essence\nOutput: 2 xxx Dust",
+  "emi.info.dore_2_dust": "Machine: Crusher\nInput: Deepslate xxx Ore, Crushed Essence\nOutput: 2 xxx Dust",
+  "emi.info.ingot_2_dust": "Machine: Crusher\nInput: xxx Ingot, Crushed Essence\nOutput: xxx Dust"
+}

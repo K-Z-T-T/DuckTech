@@ -1,0 +1,17 @@
+{
+  "type": "ducktech:shredder",
+  "input": [
+    {
+      "item": "minecraft:deepslate_copper_ore"
+    },
+    {
+      "item" : "ducktech:crushed_essence"
+    }
+  ],
+  "output": [
+    {
+      "item": "ducktech:copper_dust",
+      "count": 2
+    }
+  ]
+}

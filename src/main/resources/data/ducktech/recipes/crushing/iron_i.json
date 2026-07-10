@@ -1,0 +1,17 @@
+{
+  "type": "ducktech:shredder",
+  "input": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item" : "ducktech:crushed_essence"
+    }
+  ],
+  "output": [
+    {
+      "item": "ducktech:iron_dust",
+      "count": 1
+    }
+  ]
+}

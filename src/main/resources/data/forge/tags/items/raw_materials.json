@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:raw_aluminum",
+    "ducktech:raw_lead",
+    "ducktech:raw_silver",
+    "ducktech:raw_tin"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "A A",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:bronze_hull"
+    }
+  },
+  "result": {
+    "item": "ducktech:bronze_machine_casing"
+  }
+}

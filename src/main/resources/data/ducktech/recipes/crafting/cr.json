@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "CBC",
+    "CAC"
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:tin_gear"
+    },
+    "B": {
+      "item": "ducktech:machine_casing"
+    },
+    "C": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "ducktech:shredder"
+  }
+}

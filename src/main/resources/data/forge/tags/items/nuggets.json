@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:aluminum_nugget",
+    "ducktech:lead_nugget",
+    "ducktech:silver_nugget",
+    "ducktech:tin_nugget",
+    "ducktech:bronze_nugget"
+  ]
+}

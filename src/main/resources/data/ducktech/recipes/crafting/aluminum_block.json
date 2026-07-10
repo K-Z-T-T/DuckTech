@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:aluminum_ingot"
+    }
+  },
+  "result": {
+    "item": "ducktech:aluminum_block"
+  }
+}

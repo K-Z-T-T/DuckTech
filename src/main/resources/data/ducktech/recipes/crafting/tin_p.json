@@ -1,0 +1,19 @@
+{
+    "type": "recipesapi:damage_tool_shapeless",
+    "result": {
+        "item": "ducktech:tin_plate",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:tin_ingot"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:forge_hammer"
+            }
+        ]
+    ]
+}

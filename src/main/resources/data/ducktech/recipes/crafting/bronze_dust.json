@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:bronze_dust",
+        "count": 4
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:copper_dust"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:copper_dust"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:copper_dust"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:tin_dust"
+            }
+        ]
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "ducktech:essence_conversion_machine",
+  "input": [
+    {
+      "item": "ducktech:basic_essence"
+    },
+    {
+      "item": "minecraft:snowball"
+    }
+  ],
+  "output": [
+    {
+      "item": "ducktech:frozen_essence",
+      "count": 1
+    }
+  ],
+  "processingTime" : 60
+}

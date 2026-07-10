@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " A ",
+        "A A",
+        " A "
+    ],
+    "key": {
+        "A": {
+            "item": "ducktech:iron_hull"
+        }
+    },
+    "result": {
+        "item": "ducktech:machine_casing"
+    }
+}

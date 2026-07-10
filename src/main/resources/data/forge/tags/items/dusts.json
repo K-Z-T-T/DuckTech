@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:iron_dust",
+    "ducktech:copper_dust",
+    "ducktech:golden_dust",
+    "ducktech:aluminum_dust",
+    "ducktech:lead_dust",
+    "ducktech:silver_dust",
+    "ducktech:tin_dust"
+  ]
+}

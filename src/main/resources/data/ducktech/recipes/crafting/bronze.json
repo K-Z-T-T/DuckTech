@@ -1,0 +1,19 @@
+{
+    "type": "recipesapi:damage_tool_shapeless",
+    "result": {
+        "item": "ducktech:bronze_plate",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:bronze_ingot"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:forge_hammer"
+            }
+        ]
+    ]
+}

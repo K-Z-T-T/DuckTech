@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:aluminum_ingot",
+        "count": 9
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:aluminum_block"
+            }
+        ]
+    ]
+}

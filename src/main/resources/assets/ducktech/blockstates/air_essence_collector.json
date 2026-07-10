@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "ducktech:block/air_essence_collector"
+    },
+    "facing=south": {
+      "model": "ducktech:block/air_essence_collector",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "ducktech:block/air_essence_collector",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "ducktech:block/air_essence_collector",
+      "y": 270
+    }
+  }
+}

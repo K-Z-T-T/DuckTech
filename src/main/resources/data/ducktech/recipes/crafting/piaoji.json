@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "ABA",
+    "DAD"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:feathers"
+    },
+    "B": {
+      "item": "ducktech:machine_casing"
+    },
+    "C": {
+      "item": "minecraft:shulker_shell"
+    },
+    "D": {
+      "item": "ducktech:diamond_dust"
+    }
+  },
+  "result": {
+    "item": "ducktech:levitation_machine"
+  }
+}

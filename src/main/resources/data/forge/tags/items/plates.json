@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:aluminum_plate",
+    "ducktech:iron_plate",
+    "ducktech:tin_plate",
+    "ducktech:bronze_plate"
+  ]
+}

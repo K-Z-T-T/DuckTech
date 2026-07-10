@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "DBD",
+    "CAC"
+  ],
+  "key": {
+    "A": {
+      "tag": "ducktech:gold_gear"
+    },
+    "B": {
+      "item": "ducktech:shredder"
+    },
+    "C": {
+      "item": "minecraft:flint"
+    },
+    "D": {
+      "item": "ducktech:diamond_dust"
+    }
+  },
+  "result": {
+    "item": "ducktech:advance_shredder"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "result": {
+        "item": "ducktech:lead_nugget",
+        "count": 9
+    },
+    "ingredients": [
+        [
+            {
+                "item": "ducktech:lead_ingot"
+            }
+        ]
+    ]
+}

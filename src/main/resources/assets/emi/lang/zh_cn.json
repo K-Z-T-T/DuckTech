@@ -1,0 +1,5 @@
+{
+  "emi.info.ore_2_dust": "机器：粉碎机\n输入：x矿石 粉碎精华\n输出：x粉*2",
+  "emi.info.dore_2_dust": "机器：粉碎机\n输入：深层x矿石 粉碎精华\n输出：x粉*2",
+  "emi.info.ingot_2_dust": "机器：粉碎机\n输入：x锭 粉碎精华\n输出：x粉"
+}

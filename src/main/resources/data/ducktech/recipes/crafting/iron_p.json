@@ -1,0 +1,19 @@
+{
+    "type": "recipesapi:damage_tool_shapeless",
+    "result": {
+        "item": "ducktech:iron_plate",
+        "count": 1
+    },
+    "ingredients": [
+        [
+            {
+                "item": "minecraft:iron_ingot"
+            }
+        ],
+        [
+            {
+                "item": "ducktech:forge_hammer"
+            }
+        ]
+    ]
+}

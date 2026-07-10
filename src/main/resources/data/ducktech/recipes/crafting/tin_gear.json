@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "A A",
+    " A "
+  ],
+  "key": {
+    "A": {
+      "item": "ducktech:tin_ingot"
+    }
+  },
+  "result": {
+    "item": "ducktech:tin_gear"
+  }
+}

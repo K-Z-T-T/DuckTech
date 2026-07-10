@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+
+# Gradle configuration
+build.gradle
+settings.gradle
+gradle.properties
+
+# IDEA
+.idea/
+
+# 其他构建文件
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+run/
+
+# 避免忽略gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+README.md
+README.md
+settings.gradle
+gradle/wrapper/gradle-wrapper.properties
+settings.gradle
