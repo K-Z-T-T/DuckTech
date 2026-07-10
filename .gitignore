@@ -17,7 +17,7 @@ gradle.properties
 *.tar
 *.tar.gz
 run/
-!src/main/resources/META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.0.0-Fix1.jar
+!src/main/resources/META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.0.1.jar
 
 # 避免忽略gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.jar
