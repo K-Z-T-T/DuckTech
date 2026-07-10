@@ -77,6 +77,7 @@
   "block.ducktech.air_essence_collector" : "Air Essence Collector",
   "item.ducktech.ducktech": "DuckTech",
   "block.ducktech.void_hopper" : "Void Hopper",
+  "block.ducktech.injection_machine" : "Injection Machine",
   "block.ducktech.essence_furnace" : "Essence Furnace",
   "block.ducktech.essence_conversion_machine": "Essence Conversion Machine",
   "item.ducktech.basic_essence_helmet_level_one": "基础精华头盔",

@@ -2,15 +2,15 @@
   "type": "ducktech:injection_machine",
   "input": [
     {
-      "item": "ducktech:basic_essence_helmet_level_one"
+      "item": "minecraft:diamond"
     },
     {
-      "item": "ducktech:basic_essence_plate"
+      "item": "minecraft:iron_ingot"
     }
   ],
   "output": [
     {
-      "item": "ducktech:basic_essence_helmet_level_two",
+      "item": "minecraft:gold_ingot",
       "count": 1
     }
   ],

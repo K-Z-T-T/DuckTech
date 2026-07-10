@@ -6,7 +6,6 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.quiltmc.users.duckteam.DuckTech.items.armor_material.DTArmorMaterial;
 
 public class DTItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DuckTech.MODID);
@@ -90,6 +89,7 @@ public class DTItems {
                     new Item(new Item.Properties().stacksTo(1).durability(64)));
 
     //盔甲
+    /*
     public static final RegistryObject<Item> BASIC_ESSENCE_HELMET_LEVEL_ONE = ITEMS.register("basic_essence_helmet_level_one",
             () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_ONE, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BASIC_ESSENCE_CHESTPLATE_LEVEL_ONE = ITEMS.register("basic_essence_chestplate_level_one",
@@ -116,7 +116,7 @@ public class DTItems {
             () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_THREE, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BASIC_ESSENCE_BOOTS_LEVEL_THREE = ITEMS.register("basic_essence_boots_level_three",
             () -> new ArmorItem(DTArmorMaterial.BASIC_ESSENCE_LEVEL_THREE, ArmorItem.Type.BOOTS, new Item.Properties().stacksTo(1)));
-
+*/
 
     public static RegistryObject<Item> registerSimpleItem(String itemName){
         return ITEMS.register(itemName , ()-> new Item(new Item.Properties()));

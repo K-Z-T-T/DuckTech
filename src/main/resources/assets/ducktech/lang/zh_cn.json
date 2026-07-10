@@ -91,6 +91,7 @@
   "item.ducktech.basic_essence_chestplate_level_three": "基础精华胸甲",
   "item.ducktech.basic_essence_leggings_level_three": "基础精华护腿",
   "item.ducktech.basic_essence_boots_level_three": "基础精华靴子",
+  "block.ducktech.injection_machine" : "Injection 机",
 
   "jei.tooltip.time": "耗时",
   "subtitles.ducktech.zaoyin": "机器：噪音"
