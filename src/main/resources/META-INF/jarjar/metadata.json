@@ -9,7 +9,7 @@
         "range": "[1.0.0,)",
         "artifactVersion": "1.0.0"
       },
-      "path": "META-INF/jarjar/Recipes_API_Forge_1.20-1.20.1_1.0.1.jar",
+      "path": "META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.0.1.jar",
       "isObfuscated": false
     }
   ]
