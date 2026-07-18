@@ -52,7 +52,7 @@ public class VoidEssenceCollectorBlockEntity extends BlockEntity {
             ItemEntity outputEntity = new ItemEntity(
                     level,
                     spawnPosition.getX() + 0.5,
-                    spawnPosition.getY() + 0.5,
+                    spawnPosition.getY() + 1.5,
                     spawnPosition.getZ() + 0.5,
                     DTItems.VOID_ESSENCE.get().getDefaultInstance()
             );

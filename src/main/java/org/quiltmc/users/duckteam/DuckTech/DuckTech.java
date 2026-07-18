@@ -47,6 +47,5 @@ public class DuckTech {
     }
     private void onConstructMod(final FMLConstructModEvent event) {
         // 在这里处理 FMLConstructModEvent
-        LOGGER.info("DuckTech:FMLConstructModEvent 已触发!");
     }
 }
