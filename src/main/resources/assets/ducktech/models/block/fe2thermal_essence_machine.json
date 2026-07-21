@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ducktech:block/fe2thermal_essence_machine",
+    "side": "ducktech:block/bronze_machine_casing",
+    "top": "ducktech:block/bronze_machine_casing"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "ducktech:block/fe2thermal_essence_machine"
+    },
+    "facing=south": {
+      "model": "ducktech:block/fe2thermal_essence_machine",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "ducktech:block/fe2thermal_essence_machine",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "ducktech:block/fe2thermal_essence_machine",
+      "y": 270
+    }
+  }
+}
