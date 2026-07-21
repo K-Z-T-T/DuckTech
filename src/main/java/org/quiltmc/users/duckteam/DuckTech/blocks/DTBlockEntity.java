@@ -46,4 +46,8 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<InjectionMachineBlockEntity>> INJECTION_MACHINE_BLOCK_ENTITY =
             BLOCK_ENTITY_TYPES.register("injection_machine_block_entity", () -> BlockEntityType.Builder.of(
                     InjectionMachineBlockEntity::new, DTBlocks.INJECTION_MACHINE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<FE2ThermalEssenceMachineBlockEntity>> FE2THERMAL_ESSENCE_MACHINE_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register("fe2thermal_essence_machine_block_entity", () -> BlockEntityType.Builder.of(
+                    FE2ThermalEssenceMachineBlockEntity::new, DTBlocks.FE2THERMAL_ESSENCE_MACHINE.get()).build(null));
 }

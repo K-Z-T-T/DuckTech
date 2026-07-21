@@ -13,9 +13,6 @@ public class LevitationMachineScreen extends AbstractContainerScreen<LevitationM
     public static final ResourceLocation GUI_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
             "textures/screen/levitation.png");
 
-    public static final ResourceLocation SLOT = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
-            "textures/gui/slot.png");
-
 
     public LevitationMachineScreen(LevitationMachineMenu p_97741_, Inventory p_97742_, Component p_97743_) {
         super(p_97741_, p_97742_, p_97743_);
