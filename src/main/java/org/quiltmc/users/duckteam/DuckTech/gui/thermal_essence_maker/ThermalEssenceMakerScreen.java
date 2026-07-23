@@ -11,7 +11,7 @@ import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 
 public class ThermalEssenceMakerScreen extends AbstractContainerScreen<ThermalEssenceMakerMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(DuckTech.MODID, "textures/screen/jhj.png");
+            new ResourceLocation(DuckTech.MODID, "textures/screen/one_to_one.png");
 
     public ThermalEssenceMakerScreen(ThermalEssenceMakerMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);

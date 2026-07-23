@@ -11,7 +11,10 @@ import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 
 public class FrozenEssenceMakerScreen extends AbstractContainerScreen<FrozenEssenceMakerMenu> {
     private static final ResourceLocation TEXTURE =
-            new ResourceLocation(DuckTech.MODID, "textures/screen/jhj.png");
+            new ResourceLocation(DuckTech.MODID, "textures/screen/one_to_one.png");
+
+    public static final ResourceLocation ARROW_TEXTURE = ResourceLocation.fromNamespaceAndPath(DuckTech.MODID,
+            "textures/screen/arrow_progress.png");
 
     public FrozenEssenceMakerScreen(FrozenEssenceMakerMenu menu, Inventory playerInv, Component title) {
         super(menu, playerInv, title);
@@ -24,14 +27,12 @@ public class FrozenEssenceMakerScreen extends AbstractContainerScreen<FrozenEsse
         RenderSystem.setShaderTexture(0, TEXTURE);
         graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 
-        // 绘制进度箭头
-        int progress = menu.getProgress();
         int maxProgress = menu.getMaxProgress();
         if (maxProgress > 0) {
-            int arrowHeight = (int) (24 * ((float) progress / maxProgress));
-            graphics.blit(TEXTURE, leftPos + 79, topPos + 34, 176, 0, 18, arrowHeight);
+            graphics.blit( ARROW_TEXTURE, mouseX + 73, mouseY + 35, 0, 0,menu.getScaleArrowProgress(),16,24,16);
         }
     }
+
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {

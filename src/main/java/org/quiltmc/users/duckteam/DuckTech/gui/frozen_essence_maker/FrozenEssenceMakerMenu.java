@@ -27,7 +27,13 @@ public class FrozenEssenceMakerMenu extends AbstractContainerMenu {
                 entity != null ? ContainerLevelAccess.create(entity.getLevel(), entity.getBlockPos()) : ContainerLevelAccess.NULL,
                 entity);
     }
+    public int getScaleArrowProgress(){
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);
+        int arrowPixelSize = 24;
 
+        return maxProgress != 0 &&  progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
+    }
     // 私有构造，统一处理
     private FrozenEssenceMakerMenu(int containerId, Inventory playerInv, ContainerLevelAccess access,
                                    @Nullable FrozenEssenceMakerBlockEntity entity) {
