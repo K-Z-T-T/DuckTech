@@ -8,11 +8,13 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FE2ThermalEssenceMachineBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FrozenEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.ThermalEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_conversion_machine.EssenceConversionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenceMakerMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerMenu;
@@ -52,7 +54,7 @@ public class DTMenu {
                     }));
 
     public static final RegistryObject<MenuType<ThermalEssenceMakerMenu>> THERMAL_ESSENCE_MAKER =
-            MENUS.register("thermal_essence_maker",
+            MENUS.register("thermal_essence_maker_menu",
                     () -> IForgeMenuType.create((windowId, inv, data) -> {
                         BlockPos pos = data.readBlockPos();
                         BlockEntity be = inv.player.level().getBlockEntity(pos);
@@ -60,5 +62,18 @@ public class DTMenu {
                             return new ThermalEssenceMakerMenu(windowId, inv, generator);
                         }
                         return null;
+                    }));
+
+    public static final RegistryObject<MenuType<FrozenEssenceMakerMenu>> FROZEN_ESSENCE_MAKER_MENU =
+            MENUS.register("frozen_essence_maker_menu",
+                    () -> IForgeMenuType.create((windowId, inv, data) -> {
+                        BlockPos pos = data.readBlockPos();
+                        BlockEntity be = inv.player.level().getBlockEntity(pos);
+                        if (be instanceof FrozenEssenceMakerBlockEntity entity) {
+                            return new FrozenEssenceMakerMenu(windowId, inv, entity);
+                        } else {
+                            // 客户端或未同步时，只传递位置
+                            return new FrozenEssenceMakerMenu(windowId, inv, pos);
+                        }
                     }));
 }

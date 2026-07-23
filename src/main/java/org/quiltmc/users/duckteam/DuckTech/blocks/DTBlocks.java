@@ -143,6 +143,8 @@ public class DTBlocks {
 
     public static final RegistryObject<Block> THERMAL_ESSENCE_MAKER = registerBlock("thermal_essence_maker", () -> new ThermalEssenceMaker(BlockBehaviour.Properties.of()));
 
+    public static final RegistryObject<Block> FROZEN_ESSENCE_MAKER = registerBlock("frozen_essence_maker", () -> new FrozenEssenceMaker(BlockBehaviour.Properties.of()));
+
     public static RegistryObject<Block> registerSimpleBlock(String name, BlockBehaviour.Properties properties) {
         RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
         DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "ducktech:block/bb_c",
+    "side": "ducktech:block/bb_c",
+    "top": "ducktech:block/bb_d"
+  }
+}

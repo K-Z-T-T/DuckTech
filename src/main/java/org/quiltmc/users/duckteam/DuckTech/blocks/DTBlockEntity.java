@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.*;
+import org.quiltmc.users.duckteam.DuckTech.blocks.custom.FrozenEssenceMaker;
 
 public class DTBlockEntity {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
@@ -58,4 +59,8 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<ThermalEssenceMakerBlockEntity>> THERMAL_ESSENCE_MAKER =
             BLOCK_ENTITY_TYPES.register("thermal_essence_maker_block_entity", () -> BlockEntityType.Builder.of(
                     ThermalEssenceMakerBlockEntity::new, DTBlocks.THERMAL_ESSENCE_MAKER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<FrozenEssenceMakerBlockEntity>> FROZEN_ESSENCE_MAKER_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register("frozen_essence_maker_block_entity", () -> BlockEntityType.Builder.of(
+                    FrozenEssenceMakerBlockEntity::new, DTBlocks.FROZEN_ESSENCE_MAKER.get()).build(null));
 }
