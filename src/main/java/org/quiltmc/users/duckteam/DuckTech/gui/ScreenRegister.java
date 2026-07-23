@@ -12,6 +12,7 @@ import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceScr
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineScreen;
+import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerScreen;
 
 @Mod.EventBusSubscriber(modid = DuckTech.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ScreenRegister {
@@ -24,6 +25,7 @@ public class ScreenRegister {
             MenuScreens.register(DTMenu.ESSENCE_CONVERSION_MACHINE_MENU.get(), EssenceConversionMachineScreen::new);
             MenuScreens.register(DTMenu.INJECTION_MACHINE_MENU.get(), InjectionMachineScreen::new);
             MenuScreens.register(DTMenu.FE2THERMAL_ESSENCE_MACHINE_MENU.get(), FE2ThermalEssenceMachineScreen::new);
+            MenuScreens.register(DTMenu.THERMAL_ESSENCE_MAKER.get(), ThermalEssenceMakerScreen::new);
         });
     }
 }

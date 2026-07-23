@@ -5,16 +5,17 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FE2ThermalEssenceMachineBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.ThermalEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_conversion_machine.EssenceConversionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerMenu;
 
 import static net.minecraftforge.registries.ForgeRegistries.MENU_TYPES;
 
@@ -46,6 +47,17 @@ public class DTMenu {
                         BlockEntity be = inv.player.level().getBlockEntity(pos);
                         if (be instanceof FE2ThermalEssenceMachineBlockEntity generator) {
                             return new FE2ThermalEssenceMachineMenu(windowId, inv, generator);
+                        }
+                        return null;
+                    }));
+
+    public static final RegistryObject<MenuType<ThermalEssenceMakerMenu>> THERMAL_ESSENCE_MAKER =
+            MENUS.register("thermal_essence_maker",
+                    () -> IForgeMenuType.create((windowId, inv, data) -> {
+                        BlockPos pos = data.readBlockPos();
+                        BlockEntity be = inv.player.level().getBlockEntity(pos);
+                        if (be instanceof ThermalEssenceMakerBlockEntity generator) {
+                            return new ThermalEssenceMakerMenu(windowId, inv, generator);
                         }
                         return null;
                     }));

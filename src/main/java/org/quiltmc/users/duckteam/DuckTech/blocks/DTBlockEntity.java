@@ -54,4 +54,8 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<BedrockBreakerBlockEntity>> BEDROCK_BREAKER_BE =
             BLOCK_ENTITY_TYPES.register("bedrock_breaker_block_entity", () -> BlockEntityType.Builder.of(
                     BedrockBreakerBlockEntity::new, DTBlocks.BEDROCK_BREAKER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<ThermalEssenceMakerBlockEntity>> THERMAL_ESSENCE_MAKER =
+            BLOCK_ENTITY_TYPES.register("thermal_essence_maker_block_entity", () -> BlockEntityType.Builder.of(
+                    ThermalEssenceMakerBlockEntity::new, DTBlocks.THERMAL_ESSENCE_MAKER.get()).build(null));
 }
