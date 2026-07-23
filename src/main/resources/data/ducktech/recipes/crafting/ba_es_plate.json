@@ -2,7 +2,7 @@
     "type": "minecraft:crafting_shapeless",
     "result": {
         "item": "ducktech:basic_essence_plate",
-        "count": 4
+        "count": 1
     },
     "ingredients": [
         [

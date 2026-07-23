@@ -22,12 +22,11 @@ import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
 
 import javax.annotation.Nullable;
 
-public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuProvider, Container {   // ✅ 实现 Container
+public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuProvider, Container {
 
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 1;
     public static final int INVENTORY_SIZE = 2;
-    public static final int MAX_PROGRESS = 100; // 5 秒（100 ticks）
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(INVENTORY_SIZE) {
         @Override
@@ -40,49 +39,43 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            return slot == SLOT_INPUT && getBurnTime(stack) >= 20;
+            // 只接受燃烧时间 >= 400 的物品，否则无法产出任何精华
+            return slot == SLOT_INPUT && getBurnTime(stack) >= 400;
         }
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            if (slot == SLOT_INPUT && getBurnTime(stack) < 20) return stack;
+            if (slot == SLOT_INPUT && getBurnTime(stack) < 400) return stack;
             return super.insertItem(slot, stack, simulate);
         }
     };
 
     private int progress = 0;
-    private int maxProgress = MAX_PROGRESS;
-    private int outputCount = 0;   // 当前物品完成后要产出的精华数量
-
-    // 客户端同步字段（目前未使用，但保留无妨）
-    private int clientProgress = 0;
-    private int clientMaxProgress = MAX_PROGRESS;
+    private int maxProgress = 0;          // 动态：当前物品的燃烧时间
+    private int outputCount = 0;         // 完成后产出数量
 
     public ThermalEssenceMakerBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.THERMAL_ESSENCE_MAKER.get(), pos, state);
     }
 
-    // 获取燃烧时间，使用 ForgeHooks 兼容所有模组
     private static int getBurnTime(ItemStack stack) {
         return ForgeHooks.getBurnTime(stack, null);
     }
 
-    // 尝试开始处理输入物品
     private void tryStartProcessing() {
-        if (outputCount > 0) return; // 已有任务在进行
+        if (outputCount > 0) return;
 
         ItemStack input = itemHandler.getStackInSlot(SLOT_INPUT);
         if (input.isEmpty()) return;
 
         int burn = getBurnTime(input);
-        if (burn < 20) return; // 燃烧时间不足，无法产出
+        int count = burn / 400;           // 产量 = 燃烧时间 / 400
+        if (count <= 0) return;           // 产量不足1，不启动
 
-        int count = burn / 20;
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
         ItemStack essence = new ItemStack(DTItems.THERMAL_ESSENCE.get());
         int maxStack = essence.getMaxStackSize();
 
-        // 检查输出槽是否能接纳至少 1 个精华
         if (!output.isEmpty() &&
                 (!output.is(essence.getItem()) || output.getCount() + count > maxStack)) {
             return;
@@ -90,18 +83,16 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
 
         outputCount = count;
         progress = 0;
-        maxProgress = MAX_PROGRESS;
+        maxProgress = burn;               // 过程时间 = 物品燃烧时间
         setChanged();
     }
 
     public void tickInternal() {
         if (level == null || level.isClientSide) return;
 
-        // 没有活跃任务时尝试启动
         if (outputCount <= 0) {
             tryStartProcessing();
             if (outputCount <= 0) {
-                // 若依然没有，置零进度并返回
                 if (progress != 0) {
                     progress = 0;
                     setChanged();
@@ -110,28 +101,24 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
             }
         }
 
-        // 检查输入物品是否仍存在且有效
         ItemStack input = itemHandler.getStackInSlot(SLOT_INPUT);
-        if (input.isEmpty() || getBurnTime(input) < 20) {
-            // 原料无效，取消加工
+        // 加工过程中原料必须仍有效（燃烧时间 >= 400）
+        if (input.isEmpty() || getBurnTime(input) < 400) {
             outputCount = 0;
             progress = 0;
             setChanged();
             return;
         }
 
-        // 增加进度
         progress++;
         if (progress >= maxProgress) {
-            // 消耗输入物品
             input.shrink(1);
 
-            // 产出精华
             ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
             ItemStack essence = new ItemStack(DTItems.THERMAL_ESSENCE.get());
             if (output.isEmpty()) {
-                itemHandler.setStackInSlot(SLOT_OUTPUT, essence.copy());
                 essence.setCount(outputCount);
+                itemHandler.setStackInSlot(SLOT_OUTPUT, essence);
             } else {
                 output.grow(outputCount);
             }
@@ -140,13 +127,11 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
             progress = 0;
             setChanged();
 
-            // 自动尝试开始下一个物品
             tryStartProcessing();
         }
-        setChanged(); // 每 tick 标记同步
+        setChanged();
     }
 
-    // 以下用于同步数据和菜单
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag tag = super.getUpdateTag();
@@ -175,7 +160,6 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
         handleUpdateTag(pkt.getTag());
     }
 
-    // 菜单提供
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.ducktech.thermal_essence_maker");
@@ -203,7 +187,7 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
         return itemHandler;
     }
 
-    // ========== Container 接口实现（委托给 itemHandler） ==========
+    // === Container 实现 ===
     @Override
     public int getContainerSize() {
         return itemHandler.getSlots();
