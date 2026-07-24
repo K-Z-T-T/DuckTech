@@ -27,9 +27,9 @@ public class FrozenEssenceMakerScreen extends AbstractContainerScreen<FrozenEsse
         RenderSystem.setShaderTexture(0, TEXTURE);
         graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
 
-        int maxProgress = menu.getMaxProgress();
-        if (maxProgress > 0) {
-            graphics.blit( ARROW_TEXTURE, mouseX + 73, mouseY + 35, 0, 0,menu.getScaleArrowProgress(),16,24,16);
+        int progressWidth = menu.getScaleArrowProgress();
+        if (progressWidth > 0) {
+            graphics.blit(ARROW_TEXTURE, leftPos + 73, topPos + 35, 0, 0, progressWidth, 16, 24, 16);
         }
     }
 

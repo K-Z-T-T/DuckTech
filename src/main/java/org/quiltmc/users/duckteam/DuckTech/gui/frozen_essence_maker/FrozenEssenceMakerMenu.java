@@ -10,59 +10,35 @@ import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlocks;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FrozenEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.DTMenu;
 
-import javax.annotation.Nullable;
-
 public class FrozenEssenceMakerMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final ContainerData data;
 
-    // 客户端构造（通过工厂传递位置）
-    public FrozenEssenceMakerMenu(int containerId, Inventory playerInv, BlockPos pos) {
-        this(containerId, playerInv, ContainerLevelAccess.create(playerInv.player.level(), pos), null);
-    }
-
-    // 服务端构造（带实体）
+    // 服务端/客户端通用构造：传入实体
     public FrozenEssenceMakerMenu(int containerId, Inventory playerInv, FrozenEssenceMakerBlockEntity entity) {
-        this(containerId, playerInv,
-                entity != null ? ContainerLevelAccess.create(entity.getLevel(), entity.getBlockPos()) : ContainerLevelAccess.NULL,
-                entity);
-    }
-    public int getScaleArrowProgress(){
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1);
-        int arrowPixelSize = 24;
-
-        return maxProgress != 0 &&  progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
-    }
-    // 私有构造，统一处理
-    private FrozenEssenceMakerMenu(int containerId, Inventory playerInv, ContainerLevelAccess access,
-                                   @Nullable FrozenEssenceMakerBlockEntity entity) {
         super(DTMenu.FROZEN_ESSENCE_MAKER_MENU.get(), containerId);
-        this.access = access;
+        this.access = ContainerLevelAccess.create(entity.getLevel(), entity.getBlockPos());
 
-        // 添加方块实体槽位（仅服务端可用，客户端entity为null但不会调用此槽位）
-        if (entity != null) {
-            addSlot(new SlotItemHandler(entity.getItemHandler(), 0, 56, 35));
-            addSlot(new SlotItemHandler(entity.getItemHandler(), 1, 116, 35));
-        }
-
-        // 同步进度数据（客户端通过ContainerData读取）
+        // 用 ContainerData 绑定实体的进度数据，自动同步到客户端
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
-                if (entity != null) {
-                    return switch (index) {
-                        case 0 -> entity.getProgress();
-                        case 1 -> entity.getMaxProgress();
-                        default -> 0;
-                    };
-                }
-                return 0; // 客户端会通过数据包覆盖
+                return switch (index) {
+                    case 0 -> entity.getProgress();
+                    case 1 -> entity.getMaxProgress();
+                    default -> 0;
+                };
             }
-            @Override public void set(int index, int value) {}
-            @Override public int getCount() { return 2; }
+            @Override
+            public void set(int index, int value) {}
+            @Override
+            public int getCount() { return 2; }
         };
-        addDataSlots(data);
+        addDataSlots(this.data);
+
+        // 机器槽位
+        addSlot(new SlotItemHandler(entity.getItemHandler(), FrozenEssenceMakerBlockEntity.SLOT_INPUT, 56, 35));
+        addSlot(new SlotItemHandler(entity.getItemHandler(), FrozenEssenceMakerBlockEntity.SLOT_OUTPUT, 116, 35));
 
         // 玩家物品栏
         for (int i = 0; i < 3; ++i)
@@ -72,8 +48,28 @@ public class FrozenEssenceMakerMenu extends AbstractContainerMenu {
             addSlot(new Slot(playerInv, k, 8 + k * 18, 142));
     }
 
-    public int getProgress() { return data.get(0); }
-    public int getMaxProgress() { return data.get(1); }
+    // 备用构造：通过 BlockPos 获取实体（用于客户端或特殊情况）
+    public FrozenEssenceMakerMenu(int containerId, Inventory playerInv, BlockPos pos) {
+        this(containerId, playerInv,
+                (FrozenEssenceMakerBlockEntity) playerInv.player.level().getBlockEntity(pos));
+        // 若实体为 null，会抛出 ClassCastException，但实际打开 GUI 时实体必然存在
+    }
+
+    // 供 Screen 读取进度
+    public int getProgress() {
+        return data.get(0);
+    }
+
+    public int getMaxProgress() {
+        return data.get(1);
+    }
+
+    // 计算箭头绘制的宽度（箭头纹理总宽 24 像素）
+    public int getScaleArrowProgress() {
+        int progress = getProgress();
+        int max = getMaxProgress();
+        return max == 0 ? 0 : progress * 24 / max;
+    }
 
     @Override
     public boolean stillValid(Player player) {
@@ -82,16 +78,17 @@ public class FrozenEssenceMakerMenu extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
-        // 保持原有逻辑
         ItemStack result = ItemStack.EMPTY;
         Slot slot = slots.get(index);
         if (slot.hasItem()) {
             ItemStack stack = slot.getItem();
             result = stack.copy();
-            if (index < 2) {
-                if (!moveItemStackTo(stack, 2, 38, true)) return ItemStack.EMPTY;
-            } else {
-                if (!moveItemStackTo(stack, 0, 1, false)) return ItemStack.EMPTY;
+            if (index < 2) { // 机器槽位 → 玩家背包
+                if (!moveItemStackTo(stack, 2, 38, true))
+                    return ItemStack.EMPTY;
+            } else { // 玩家背包 → 输入槽
+                if (!moveItemStackTo(stack, 0, 1, false))
+                    return ItemStack.EMPTY;
             }
             if (stack.isEmpty()) slot.set(ItemStack.EMPTY);
             else slot.setChanged();

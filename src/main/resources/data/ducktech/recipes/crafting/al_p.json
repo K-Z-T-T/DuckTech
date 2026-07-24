@@ -1,5 +1,5 @@
 {
-    "type": "recipesapi:damage_tool_shapeless",
+    "type": "recipesapi:durability_shapeless",
     "result": {
         "item": "ducktech:aluminum_plate",
         "count": 1
