@@ -63,4 +63,18 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<FrozenEssenceMakerBlockEntity>> FROZEN_ESSENCE_MAKER_BLOCK_ENTITY =
             BLOCK_ENTITY_TYPES.register("frozen_essence_maker_block_entity", () -> BlockEntityType.Builder.of(
                     FrozenEssenceMakerBlockEntity::new, DTBlocks.FROZEN_ESSENCE_MAKER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<TransporterNodeBlockEntity>> TRANSPORTER_NODE =
+            BLOCK_ENTITY_TYPES.register("transporter_node_block_entity",
+                    () -> BlockEntityType.Builder.of(
+                            TransporterNodeBlockEntity::new,
+                            DTBlocks.TRANSPORTER_NODE.get()
+                    ).build(null));
+
+    public static final RegistryObject<BlockEntityType<TransportPipeBlockEntity>> TRANSPORT_PIPE =
+            BLOCK_ENTITY_TYPES.register("transport_pipe_block_entity",
+                    () -> BlockEntityType.Builder.of(
+                            TransportPipeBlockEntity::new,
+                            DTBlocks.TRANSPORT_PIPE.get()
+                    ).build(null));
 }

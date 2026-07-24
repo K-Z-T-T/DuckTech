@@ -1,9 +1,12 @@
 package org.quiltmc.users.duckteam.DuckTech.gui;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
@@ -18,6 +21,7 @@ import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenc
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.transporter_node.TransporterNodeMenu;
 
 import static net.minecraftforge.registries.ForgeRegistries.MENU_TYPES;
 
@@ -76,4 +80,21 @@ public class DTMenu {
                             return new FrozenEssenceMakerMenu(windowId, inv, pos);
                         }
                     }));
+
+    public static final RegistryObject<MenuType<TransporterNodeMenu>> TRANSPORTER_NODE_MENU =
+            MENUS.register("transporter_node_menu", () -> IForgeMenuType.create((windowId, playerInv, extraData) -> {
+                // 从同步数据包中读取方块坐标
+                BlockPos pos = extraData.readBlockPos();
+                // 创建 ContainerLevelAccess
+                ContainerLevelAccess access = ContainerLevelAccess.create(playerInv.player.level(), pos);
+
+                // 从目标方块实体中获取 IItemHandler 能力
+                BlockEntity blockEntity = playerInv.player.level().getBlockEntity(pos);
+                IItemHandler itemHandler = blockEntity != null
+                        ? blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER)
+                        .orElseThrow(() -> new IllegalStateException("Expected item handler capability"))
+                        : null;  // 安全起见可以进一步处理 null 情况
+
+                return new TransporterNodeMenu(windowId, playerInv, itemHandler, access);
+            }));
 }
