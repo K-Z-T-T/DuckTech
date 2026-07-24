@@ -80,6 +80,10 @@ public class DTItems {
     public static final RegistryObject<Item> YELLOW_RUBBER = registerSimpleItem("yellow_rubber");
     public static final RegistryObject<Item> DUCKTECH = registerSimpleItem("ducktech");
 
+    //SuLiao
+    public static final RegistryObject<Item> PLASTIC_SHEET = registerSimpleItem("plastic_sheet");
+    public static final RegistryObject<Item> PLASTIC_CLUMP = registerSimpleItem("plastic_clump");
+
     //耐久
     public static final RegistryObject<Item> FORGE_HAMMER = ITEMS.register("forge_hammer",
             () ->
