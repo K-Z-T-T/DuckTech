@@ -20,6 +20,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlocks;
 
 public class TransportPipe extends Block {
     // 六个方向的布尔属性
@@ -31,12 +32,12 @@ public class TransportPipe extends Block {
     public static final BooleanProperty EAST  = BooleanProperty.create("east");
 
     private static final VoxelShape CENTER = box(4, 4, 4, 12, 12, 12);
-    private static final VoxelShape DOWN_SHAPE  = box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape UP_SHAPE    = box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape NORTH_SHAPE = box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape SOUTH_SHAPE = box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape WEST_SHAPE  = box(0, 0, 0, 16, 16, 16);
-    private static final VoxelShape EAST_SHAPE  = box(0, 0, 0, 16, 16, 16);
+    private static final VoxelShape DOWN_SHAPE  = box(4, 0, 4, 12, 4, 12);
+    private static final VoxelShape UP_SHAPE    = box(4, 12, 4, 12, 16, 12);
+    private static final VoxelShape NORTH_SHAPE = box(4, 4, 0, 12, 12, 4);
+    private static final VoxelShape SOUTH_SHAPE = box(4, 4, 12, 12, 12, 16);
+    private static final VoxelShape WEST_SHAPE  = box(0, 4, 4, 4, 12, 12);
+    private static final VoxelShape EAST_SHAPE  = box(12, 4, 4, 16, 12, 12);
 
     public TransportPipe() {
         super(Properties.of()
@@ -87,7 +88,7 @@ public class TransportPipe extends Block {
         BlockPos neighborPos = pos.relative(dir);
         BlockState neighborState = level.getBlockState(neighborPos);
         // 条件1：邻位是管道本身（即同类型方块）
-        if (neighborState.getBlock() == this) {
+        if (neighborState.is(this) || neighborState.is(DTBlocks.TRANSPORTER_NODE.get())) {
             return true;
         }
         // 条件2：邻位方块拥有物品处理器能力（视为容器）
@@ -102,7 +103,11 @@ public class TransportPipe extends Block {
     }
 
     // 根据 Direction 获取对应的 BooleanProperty
-    private BooleanProperty getPropertyForDirection(Direction dir) {
+    public static boolean isConnected(BlockState state, Direction direction) {
+        return state.getValue(getPropertyForDirection(direction));
+    }
+
+    private static BooleanProperty getPropertyForDirection(Direction dir) {
         return switch (dir) {
             case DOWN  -> DOWN;
             case UP    -> UP;

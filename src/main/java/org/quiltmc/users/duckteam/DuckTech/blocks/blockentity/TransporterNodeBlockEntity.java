@@ -21,6 +21,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlocks;
+import org.quiltmc.users.duckteam.DuckTech.blocks.custom.TransportPipe;
 import org.quiltmc.users.duckteam.DuckTech.gui.transporter_node.TransporterNodeMenu;
 
 import javax.annotation.Nullable;
@@ -71,7 +72,9 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
         // 从节点相邻的管道开始
         for (Direction dir : Direction.values()) {
             BlockPos neighbor = worldPosition.relative(dir);
-            if (level.getBlockState(neighbor).is(DTBlocks.TRANSPORT_PIPE.get())) {
+            BlockState neighborState = level.getBlockState(neighbor);
+            if (neighborState.is(DTBlocks.TRANSPORT_PIPE.get())
+                    && TransportPipe.isConnected(neighborState, dir.getOpposite())) {
                 if (visited.add(neighbor)) {
                     queue.add(neighbor);
                 }
@@ -81,18 +84,21 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
         int maxSearch = 200;
         while (!queue.isEmpty() && maxSearch-- > 0) {
             BlockPos current = queue.poll();
+            BlockState currentState = level.getBlockState(current);
             // 检查当前管道周围的存储方块
             for (Direction dir : Direction.values()) {
+                if (!TransportPipe.isConnected(currentState, dir)) continue;
                 BlockPos adjacent = current.relative(dir);
                 if (adjacent.equals(worldPosition)) continue; // 排除节点本身
                 BlockState state = level.getBlockState(adjacent);
-                if (state.is(DTBlocks.TRANSPORT_PIPE.get())) {
+                if (state.is(DTBlocks.TRANSPORT_PIPE.get())
+                        && TransportPipe.isConnected(state, dir.getOpposite())) {
                     if (visited.add(adjacent)) queue.add(adjacent);
                 } else if (level.getBlockEntity(adjacent) != null) {
                     // 是存储方块吗？
                     BlockEntity be = level.getBlockEntity(adjacent);
                     if (be != null && !containers.contains(adjacent)) {
-                        LazyOptional<IItemHandler> cap = be.getCapability(ForgeCapabilities.ITEM_HANDLER);
+                        LazyOptional<IItemHandler> cap = be.getCapability(ForgeCapabilities.ITEM_HANDLER, dir.getOpposite());
                         if (cap.isPresent()) {
                             containers.add(adjacent);
                         }
@@ -145,7 +151,7 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
 
         // 先清空缓存槽，用临时变量追踪剩余
         itemHandler.setStackInSlot(0, ItemStack.EMPTY);
-        ItemStack remainderStack = cache.copy();
+        ItemStack[] remainderStack = {cache.copy()};
 
         for (int i = 0; i < targetsCount; i++) {
             int toSend = base + (i < remainder ? 1 : 0);
@@ -155,9 +161,10 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
             BlockEntity be = level.getBlockEntity(targetPos);
             if (be == null) continue;
             be.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                ItemStack sending = remainderStack.copy();
+                ItemStack sending = remainderStack[0].copy();
                 sending.setCount(toSend);
                 ItemStack leftover = ItemHandlerHelper.insertItem(handler, sending, false);
+                remainderStack[0].shrink(sending.getCount() - leftover.getCount());
                 // 如果有剩余，累加回临时栈
                 if (!leftover.isEmpty()) {
                     // 这里不能直接修改外部变量，需将未插入的物品合并回缓存
@@ -165,6 +172,7 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
                 }
             });
         }
+        itemHandler.setStackInSlot(0, remainderStack[0]);
         // 剩余的物品放回缓存（实际生产代码中应在上述循环中累计未插入部分）
         // 由于 lambda 限制，这里简化：尝试一口气全部插入，失败留在缓存。
         // 更好的实现见完整代码。

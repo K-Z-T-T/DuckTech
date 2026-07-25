@@ -1,5 +1,5 @@
 {
-  "parent": "exura:block/transport_pipe",
+  "parent": "ducktech:block/transport_pipe",
   "display": {
     "thirdperson": {
       "rotation": [
