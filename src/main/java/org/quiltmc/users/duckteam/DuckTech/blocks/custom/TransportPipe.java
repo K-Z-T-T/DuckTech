@@ -30,7 +30,7 @@ public class TransportPipe extends Block {
     public static final BooleanProperty WEST  = BooleanProperty.create("west");
     public static final BooleanProperty EAST  = BooleanProperty.create("east");
 
-    private static final VoxelShape CENTER = box(0.375, 0.375, 0.375, 0.625, 0.625, 0.625);
+    private static final VoxelShape CENTER = box(4, 4, 4, 12, 12, 12);
     private static final VoxelShape DOWN_SHAPE  = box(0, 0, 0, 16, 16, 16);
     private static final VoxelShape UP_SHAPE    = box(0, 0, 0, 16, 16, 16);
     private static final VoxelShape NORTH_SHAPE = box(0, 0, 0, 16, 16, 16);
