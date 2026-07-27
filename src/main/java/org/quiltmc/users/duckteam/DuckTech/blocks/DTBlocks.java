@@ -129,8 +129,6 @@ public class DTBlocks {
 
     public static final RegistryObject<Block> AIR_ESSENCE_COLLECTOR = registerBlock("air_essence_collector", () -> new AirEssenceCollector(BlockBehaviour.Properties.of()));
 
-    public static final RegistryObject<Block> VOID_HOPPER = registerBlock("void_hopper", () -> new VoidHopper(BlockBehaviour.Properties.of()));
-
     public static final RegistryObject<Block> ESSENCE_FURNACE = registerBlock("essence_furnace", () -> new EssenceFurnace(BlockBehaviour.Properties.of()));
 
     public static final RegistryObject<Block> ESSENCE_CONVERSION_MACHINE = registerBlock("essence_conversion_machine", () -> new EssenceConversionMachine(BlockBehaviour.Properties.of()));
@@ -144,12 +142,6 @@ public class DTBlocks {
     public static final RegistryObject<Block> THERMAL_ESSENCE_MAKER = registerBlock("thermal_essence_maker", () -> new ThermalEssenceMaker(BlockBehaviour.Properties.of()));
 
     public static final RegistryObject<Block> FROZEN_ESSENCE_MAKER = registerBlock("frozen_essence_maker", () -> new FrozenEssenceMaker(BlockBehaviour.Properties.of()));
-
-    public static final RegistryObject<Block> TRANSPORTER_NODE = registerBlock("transporter_node",
-            TransporterNode::new);
-
-    public static final RegistryObject<Block> TRANSPORT_PIPE = registerBlock("transport_pipe",
-            TransportPipe::new);
 
     public static RegistryObject<Block> registerSimpleBlock(String name, BlockBehaviour.Properties properties) {
         RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));

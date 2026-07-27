@@ -6,10 +6,22 @@
         "artifact": "RecipesAPI"
       },
       "version": {
+        "range": "[1.0.1,)",
+        "artifactVersion": "1.0.1"
+      },
+      "path": "META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.0.1.jar",
+      "isObfuscated": false
+    },
+    {
+      "identifier": {
+        "group": "org.quiltmc.users.duckteam.PipeAPI",
+        "artifact": "PipeAPI"
+      },
+      "version": {
         "range": "[1.0.0,)",
         "artifactVersion": "1.0.0"
       },
-      "path": "META-INF/jarjar/RecipesAPI_Forge_1.20-1.20.1_1.0.1.jar",
+      "path": "META-INF/jarjar/PipeAPI_1.20.1-1.0.0.jar",
       "isObfuscated": false
     }
   ]
