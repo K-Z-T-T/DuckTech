@@ -48,8 +48,8 @@ public class FrozenEssenceMakerBlockEntity extends BlockEntity implements MenuPr
     };
 
     private int progress = 0;
-    private int maxProgress = 0;          // 动态：当前物品的燃烧时间
-    private int outputCount = 0;         // 完成后产出数量
+    private int maxProgress = 0;
+    private int outputCount = 0;
 
     public FrozenEssenceMakerBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.FROZEN_ESSENCE_MAKER_BLOCK_ENTITY.get(), pos, state);
@@ -88,7 +88,7 @@ public class FrozenEssenceMakerBlockEntity extends BlockEntity implements MenuPr
 
         outputCount = count;
         progress = 0;
-        maxProgress = burn;               // 过程时间 = 物品燃烧时间
+        maxProgress = burn;
         setChanged();
     }
 

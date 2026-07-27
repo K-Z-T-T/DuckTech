@@ -52,13 +52,10 @@ public class AdvanceShredderBlockEntity extends DTBaseProcessingBlockEntity impl
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide) return;
 
-        // 首先尝试高级粉碎机配方
         Optional<AdvanceShredderRecipe> advanceRecipe = getRecipe(DTRecipe.ADVANCE_SHREDDER_RECIPE.get());
-        // 如果没有高级配方，尝试普通配方
         Optional<ShredderRecipe> basicRecipe = advanceRecipe.isPresent() ? Optional.empty() : getRecipe(DTRecipe.SHREDDER_RECIPE.get());
 
         if (advanceRecipe.isPresent() && hasRecipe(DTRecipe.ADVANCE_SHREDDER_RECIPE.get())) {
-            // 高级配方使用配方中定义的处理时间
             this.maxProgress = advanceRecipe.get().getProcessingTime() > 0 ?
                     advanceRecipe.get().getProcessingTime() : 20;
             this.data.set(1, this.maxProgress);

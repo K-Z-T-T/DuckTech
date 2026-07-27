@@ -53,11 +53,9 @@ public class ShredderBlockEntity extends BlockEntity {
 
         if (itemEntities.isEmpty()) return;
 
-        // 使用配方系统匹配
         Optional<ShredderRecipe> recipe = getRecipe(level, itemEntities);
 
         if (recipe.isPresent()) {
-            // 找到匹配的配方，开始处理
             if (!level.isClientSide()&& DTConfig.switch_sound()) {
                 level.playSound(null, pos,
                         DTSounds.ZAOYIN.get(),
@@ -72,7 +70,6 @@ public class ShredderBlockEntity extends BlockEntity {
     private Optional<ShredderRecipe> getRecipe(Level level, List<ItemEntity> itemEntities) {
         if (level == null) return Optional.empty();
 
-        // 将ItemEntity列表转换为ItemStack列表
         List<ItemStack> itemStacks = itemEntities.stream()
                 .map(ItemEntity::getItem)
                 .collect(Collectors.toList());
@@ -90,10 +87,8 @@ public class ShredderBlockEntity extends BlockEntity {
     private void completeProcessing(Level level, BlockPos pos) {
         if (currentRecipe == null || matchedEntities == null) return;
 
-        // 消耗输入物品
         consumeInputs(level, matchedEntities, currentRecipe);
 
-        // 生成输出物品
         spawnOutputs(level, pos, currentRecipe);
     }
 
@@ -121,7 +116,6 @@ public class ShredderBlockEntity extends BlockEntity {
 
         for (ItemStack output : outputs) {
             if (!output.isEmpty()) {
-                // 在方块侧面或下方生成输出，避免卡住
                 BlockPos spawnPos = findSpawnPosition(level, pos);
                 ItemEntity outputEntity = new ItemEntity(
                         level,
@@ -131,7 +125,6 @@ public class ShredderBlockEntity extends BlockEntity {
                         output.copy()
                 );
 
-                // 给物品一些随机运动
                 outputEntity.setDeltaMovement(
                         (level.random.nextFloat() - 0.5) * 0.1,
                         0.2,

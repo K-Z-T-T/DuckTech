@@ -39,7 +39,6 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            // 只接受燃烧时间 >= 400 的物品，否则无法产出任何精华
             return slot == SLOT_INPUT && getBurnTime(stack) >= 400;
         }
 
@@ -51,8 +50,8 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
     };
 
     private int progress = 0;
-    private int maxProgress = 0;          // 动态：当前物品的燃烧时间
-    private int outputCount = 0;         // 完成后产出数量
+    private int maxProgress = 0;
+    private int outputCount = 0;
 
     public ThermalEssenceMakerBlockEntity(BlockPos pos, BlockState state) {
         super(DTBlockEntity.THERMAL_ESSENCE_MAKER.get(), pos, state);
@@ -69,8 +68,8 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
         if (input.isEmpty()) return;
 
         int burn = getBurnTime(input);
-        int count = burn / 400;           // 产量 = 燃烧时间 / 400
-        if (count <= 0) return;           // 产量不足1，不启动
+        int count = burn / 400;
+        if (count <= 0) return;
 
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
         ItemStack essence = new ItemStack(DTItems.THERMAL_ESSENCE.get());
@@ -83,7 +82,7 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
 
         outputCount = count;
         progress = 0;
-        maxProgress = burn;               // 过程时间 = 物品燃烧时间
+        maxProgress = burn;
         setChanged();
     }
 
@@ -102,7 +101,6 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
         }
 
         ItemStack input = itemHandler.getStackInSlot(SLOT_INPUT);
-        // 加工过程中原料必须仍有效（燃烧时间 >= 400）
         if (input.isEmpty() || getBurnTime(input) < 400) {
             outputCount = 0;
             progress = 0;
@@ -187,7 +185,6 @@ public class ThermalEssenceMakerBlockEntity extends BlockEntity implements MenuP
         return itemHandler;
     }
 
-    // === Container 实现 ===
     @Override
     public int getContainerSize() {
         return itemHandler.getSlots();

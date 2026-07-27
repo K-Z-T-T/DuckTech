@@ -109,7 +109,6 @@ public class TransporterNodeBlockEntity extends BlockEntity implements MenuProvi
         return containers;
     }
 
-    // 从邻居容器抽取物品到缓存
     private void extractFromNeighbors() {
         for (Direction dir : Direction.values()) {
             BlockPos neighbor = worldPosition.relative(dir);

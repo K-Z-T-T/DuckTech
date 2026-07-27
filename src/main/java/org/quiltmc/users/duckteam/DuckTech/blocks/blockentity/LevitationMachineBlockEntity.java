@@ -50,13 +50,12 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
     };
 
         private int levitationTime = 0;
-        private static final int MAX_LEVITATION_TIME = 600; // 30秒
+        private static final int MAX_LEVITATION_TIME = 600;
         private boolean isLevitating = false;
 
         public void tick(Level level, BlockPos pos, BlockState state) {
             if (level.isClientSide) return;
 
-            // 检查是否有AIR_ESSENCE物品，如果有则启动效果
             if (!isLevitating && itemStackHandler.getStackInSlot(0).getItem().equals(DTItems.AIR_ESSENCE.get())) {
                 if (!level.isClientSide()) {
                     level.playSound(null, pos,
@@ -65,39 +64,32 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
                             1.0F,
                             1.0F);
                 }
-                // 消耗一个物品并启动效果
                 itemStackHandler.getStackInSlot(0).shrink(1);
                 startLevitationEffect();
             }
 
-            // 如果正在应用漂浮效果
             if (isLevitating) {
                 levitationTime++;
                 data.set(0 ,this.levitationTime);
                 setChanged();
 
-                // 获取周围15格范围内的所有生物
                 List<LivingEntity> entities = level.getEntitiesOfClass(
                         LivingEntity.class,
                         getBoundingBox(pos, 15),
                         entity -> !(entity instanceof Player) || !entity.isSpectator()
                 );
 
-                // 对每个生物应用漂浮效果
                 for (LivingEntity entity : entities) {
-                    // 给予漂浮效果 (Levitation I, 持续2秒，但会持续刷新)
                     entity.addEffect(new MobEffectInstance(
-                            MobEffects.LEVITATION,  // 漂浮效果
-                            40,                     // 持续时间 (2秒，会在下次tick时刷新)
-                            1,                      // 效果等级 (Levitation I)
-                            true,                   // 显示粒子效果
-                            true                    // 显示图标
+                            MobEffects.LEVITATION,
+                            40,
+                            1,
+                            true,
+                            true
                     ));
                 }
 
-                // 检查是否达到30秒
                 if (levitationTime >= MAX_LEVITATION_TIME) {
-                    // 停止效果
                     isLevitating = false;
                     levitationTime = 0;
                 }
@@ -133,12 +125,10 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
             levitationTime = 0;
         }
 
-        // 添加漏斗适配功能
         @Override
         public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
             if (cap == ForgeCapabilities.ITEM_HANDLER) {
 
-                // 创建输入处理器（只允许插入）
                 LazyOptional<IItemHandler> inputHandler = LazyOptional.of(() -> new IItemHandler() {
                     @Override
                     public int getSlots() {
@@ -147,13 +137,11 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
 
                     @Override
                     public ItemStack getStackInSlot(int slot) {
-                        // 不允许通过漏斗查看内部物品
                         return ItemStack.EMPTY;
                     }
 
                     @Override
                     public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-                        // 只允许向槽位0插入
                         if (slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get())) {
                             return itemStackHandler.insertItem(slot, stack, simulate);
                         }
@@ -162,7 +150,6 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
 
                     @Override
                     public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                        // 不允许通过漏斗提取物品
                         return ItemStack.EMPTY;
                     }
 
@@ -173,7 +160,6 @@ public class LevitationMachineBlockEntity extends BlockEntity implements MenuPro
 
                     @Override
                     public boolean isItemValid(int slot, ItemStack stack) {
-                        // 只有槽位0可以接受AIR_ESSENCE物品
                         return slot == 0 && stack.getItem().equals(DTItems.AIR_ESSENCE.get());
                     }
                 });

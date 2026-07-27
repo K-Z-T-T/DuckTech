@@ -33,12 +33,11 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
     private final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
-            setChanged(); // 标记数据已变更，存档/同步
+            setChanged();
         }
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            // 这个槽不允许玩家放入任何物品，只能由机器输出
             return false;
         }
     };
@@ -59,28 +58,22 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
         if (tickCounter >= TICKS_PER_OPERATION) {
             tickCounter = 0;
 
-            // 能量不足则跳过
             if (energyStorage.getEnergyStored() < ENERGY_PER_OPERATION) {
                 return;
             }
 
-            // 输出槽逻辑：如果为空，直接放入橡木原木
-            // 如果已有橡木原木且数量未满，则增加1
             ItemStack output = itemHandler.getStackInSlot(0);
             if (output.isEmpty()) {
                 energyStorage.extractEnergy(ENERGY_PER_OPERATION, false);
                 itemHandler.setStackInSlot(0, new ItemStack(DTItems.THERMAL_ESSENCE.get(), 1));
-            } else if (output.getItem() == Items.OAK_LOG && output.getCount() < output.getMaxStackSize()) {
+            } else if (output.getItem() == DTItems.THERMAL_ESSENCE.get() && output.getCount() < output.getMaxStackSize()) {
                 energyStorage.extractEnergy(ENERGY_PER_OPERATION, false);
                 output.grow(1);
-                // setStackInSlot 会调用 onContentsChanged
                 itemHandler.setStackInSlot(0, output);
             }
-            // 否则槽满或不是橡木，什么都不做
         }
     }
 
-    // ---------- GUI 提供 ----------
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.oakgenerator.oak_generator");
@@ -92,7 +85,6 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
         return new FE2ThermalEssenceMachineMenu(containerId, playerInventory, this);
     }
 
-    // ---------- 能力暴露 ----------
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) {
@@ -111,7 +103,6 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
         itemLazy.invalidate();
     }
 
-    // ---------- 数据持久化 ----------
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
@@ -126,7 +117,6 @@ public class FE2ThermalEssenceMachineBlockEntity extends BlockEntity implements 
         tag.put("Inventory", itemHandler.serializeNBT());
     }
 
-    // 供菜单使用的能量存取器（避免直接暴露 EnergyStorage）
     public EnergyStorage getEnergyStorage() {
         return energyStorage;
     }

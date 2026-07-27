@@ -118,7 +118,6 @@ public class TransportPipe extends Block {
         };
     }
 
-    // 动态碰撞箱：中心 + 所有连接方向的伸出部分
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
         VoxelShape shape = CENTER;
@@ -130,6 +129,4 @@ public class TransportPipe extends Block {
         if (state.getValue(EAST))  shape = Shapes.or(shape, EAST_SHAPE);
         return shape;
     }
-
-    // 可选：重写 onRemove 处理方块破坏时可能的缓存（本例无需额外操作）
 }
