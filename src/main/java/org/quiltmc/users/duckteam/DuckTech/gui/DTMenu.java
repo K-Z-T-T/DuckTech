@@ -1,15 +1,14 @@
 package org.quiltmc.users.duckteam.DuckTech.gui;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.EssenceEarthFurnaceBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FE2ThermalEssenceMachineBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FrozenEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.ThermalEssenceMakerBlockEntity;
@@ -20,6 +19,7 @@ import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2The
 import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenceMakerMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.essence_earth_furnace.EssenceEarthFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerMenu;
 
 import static net.minecraftforge.registries.ForgeRegistries.MENU_TYPES;
@@ -78,5 +78,16 @@ public class DTMenu {
                             // 客户端或未同步时，只传递位置
                             return new FrozenEssenceMakerMenu(windowId, inv, pos);
                         }
+                    }));
+    public static final RegistryObject<MenuType<EssenceEarthFurnaceMenu>> ESSENCE_EARTH_FURNACE =
+            MENUS.register("essence_earth_furnace",
+                    () -> IForgeMenuType.create((windowId, inv, data) -> {
+                        BlockPos pos = data.readBlockPos();
+                        BlockEntity be = inv.player.level().getBlockEntity(pos);
+                        if (be instanceof EssenceEarthFurnaceBlockEntity furnace) {
+                            return new EssenceEarthFurnaceMenu(windowId, inv, furnace, furnace.getContainerData());
+                        }
+                        // 若获取不到，创建一个虚拟的 ContainerData 以免崩溃
+                        return new EssenceEarthFurnaceMenu(windowId, inv, null, new SimpleContainerData(4));
                     }));
 }

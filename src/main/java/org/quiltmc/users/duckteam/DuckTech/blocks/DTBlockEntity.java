@@ -59,4 +59,8 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<FrozenEssenceMakerBlockEntity>> FROZEN_ESSENCE_MAKER_BLOCK_ENTITY =
             BLOCK_ENTITY_TYPES.register("frozen_essence_maker_block_entity", () -> BlockEntityType.Builder.of(
                     FrozenEssenceMakerBlockEntity::new, DTBlocks.FROZEN_ESSENCE_MAKER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<EssenceEarthFurnaceBlockEntity>> ESSENCE_EARTH_FURNACE_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register("essence_earth_furnace_block_entity", () -> BlockEntityType.Builder.of(
+                    EssenceEarthFurnaceBlockEntity::new, DTBlocks.ESSENCE_EARTH_FURNACE.get()).build(null));
 }

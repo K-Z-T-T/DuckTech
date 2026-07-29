@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ducktech:aluminum_ore",
+    "ducktech:lead_ore",
+    "ducktech:silver_ore",
+    "ducktech:tin_ore",
+    "ducktech:deepslate_aluminum_ore",
+    "ducktech:deepslate_lead_ore",
+    "ducktech:deepslate_silver_ore",
+    "ducktech:deepslate_tin_ore"
+  ]
+}
