@@ -116,6 +116,12 @@ public class DTBlocks {
             () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
     public static final RegistryObject<Block> BRONZE_MACHINE_CASING = registerBlock("bronze_machine_casing",
             () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
+    public static final RegistryObject<Block> RUBBER_WOOD = registerBlock("rubber_wood",
+            () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
+    public static final RegistryObject<Block> RUBBER_PLANK = registerBlock("rubber_plank",
+            () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
+    public static final RegistryObject<Block> RUBBER_LEAVES = registerBlock("rubber_leaves",
+            () -> new Block(METAL_OTHER_BLOCK_PROPERTIES));
 
 
     //机器
