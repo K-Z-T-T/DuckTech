@@ -1,16 +1,13 @@
 {
-  "type": "ducktech:injection_machine",
+  "type": "ducktech:juice_extractor",
   "input": [
     {
-      "item": "minecraft:diamond"
-    },
-    {
-      "item": "minecraft:iron_ingot"
+      "item": "ducktech:rubber_wood"
     }
   ],
   "output": [
     {
-      "item": "minecraft:gold_ingot",
+      "item": "ducktech:rubber",
       "count": 1
     }
   ],
