@@ -11,22 +11,22 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlocks;
-import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.AdvanceShredderBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.JuiceExtractorBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.DTMenu;
 
 public class JuiceExtractorMenu extends AbstractContainerMenu {
-    public final AdvanceShredderBlockEntity blockEntity;
+    public final JuiceExtractorBlockEntity blockEntity;
     public final Level level;
     private final ContainerData data;
 
     public JuiceExtractorMenu(int containerId, Inventory inventory, FriendlyByteBuf friendlyByteBuf) {
-        this(containerId, inventory, ((AdvanceShredderBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
+        this(containerId, inventory, ((JuiceExtractorBlockEntity) inventory.player.level().getBlockEntity(friendlyByteBuf.readBlockPos())), new SimpleContainerData(2));
     }
 
     public JuiceExtractorMenu(int containerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(DTMenu.ADVANCE_SHREDDER_MENU.get(), containerId);
+        super(DTMenu.JUICE_EXTRACTOR_MENU.get(), containerId);
 
-        blockEntity = (AdvanceShredderBlockEntity) entity;
+        blockEntity = (JuiceExtractorBlockEntity) entity;
         this.level = inv.player.level();
         this.data = data;
 
@@ -39,22 +39,22 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
         // 添加机器槽位
         IItemHandler itemHandler = blockEntity.itemStackHandler;
         // 输入槽位
-        this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.INPUT_SLOT_1, 54, 24));
-        this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.INPUT_SLOT_2, 54, 44));
+        this.addSlot(new SlotItemHandler(itemHandler, JuiceExtractorBlockEntity.INPUT_SLOT_1, 54, 24));
+        this.addSlot(new SlotItemHandler(itemHandler, JuiceExtractorBlockEntity.INPUT_SLOT_2, 54, 44));
         // 输出槽位
-        this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.OUTPUT_SLOT_1, 116, 18){
+        this.addSlot(new SlotItemHandler(itemHandler, JuiceExtractorBlockEntity.OUTPUT_SLOT_1, 116, 18){
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
             }
         });
-        this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.OUTPUT_SLOT_2, 116, 36){
+        this.addSlot(new SlotItemHandler(itemHandler, JuiceExtractorBlockEntity.OUTPUT_SLOT_2, 116, 36){
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
             }
         });
-        this.addSlot(new SlotItemHandler(itemHandler, AdvanceShredderBlockEntity.OUTPUT_SLOT_3, 116, 54){
+        this.addSlot(new SlotItemHandler(itemHandler, JuiceExtractorBlockEntity.OUTPUT_SLOT_3, 116, 54){
             @Override
             public boolean mayPlace(@NotNull ItemStack stack) {
                 return false;
@@ -128,7 +128,7 @@ public class JuiceExtractorMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, DTBlocks.ADVANCE_SHREDDER.get());
+                player, DTBlocks.JUICE_EXTRACTOR.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {

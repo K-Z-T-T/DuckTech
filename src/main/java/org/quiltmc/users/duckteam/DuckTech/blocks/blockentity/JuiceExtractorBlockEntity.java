@@ -2,7 +2,6 @@ package org.quiltmc.users.duckteam.DuckTech.blocks.blockentity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -15,12 +14,9 @@ import org.jetbrains.annotations.Nullable;
 import org.quiltmc.users.duckteam.DuckTech.api.block.DTBaseProcessingBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.api.recipes.InputOutputRecipe;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
-import org.quiltmc.users.duckteam.DuckTech.config.DTConfig;
-import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.juice_extractor.JuiceExtractorMenu;
 import org.quiltmc.users.duckteam.DuckTech.recipe.DTRecipe;
-import org.quiltmc.users.duckteam.DuckTech.recipe.custom.advanceshredder.AdvanceShredderRecipe;
-import org.quiltmc.users.duckteam.DuckTech.recipe.custom.shredder.ShredderRecipe;
-import org.quiltmc.users.duckteam.DuckTech.sounds.DTSounds;
+import org.quiltmc.users.duckteam.DuckTech.recipe.custom.juice_extractor.JuiceExtractorRecipe;
 import org.quiltmc.users.duckteam.DuckTech.utils.RecipeOutputUtil;
 
 import java.util.List;
@@ -35,27 +31,26 @@ public class JuiceExtractorBlockEntity extends DTBaseProcessingBlockEntity imple
     public static final int OUTPUT_SLOT_3 = 4;
 
     public JuiceExtractorBlockEntity(BlockPos pos, BlockState state) {
-        super(DTBlockEntity.ADVANCE_SHREDDER_BLOCK_ENTITY.get(), pos, state);
+        super(DTBlockEntity.JUICE_EXTRACTOR_BLOCK_ENTITY.get(), pos, state);
         this.setItemStackHandler(5);
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.ducktech.advance_shredder");
+        return Component.translatable("block.ducktech.juice_extractor");
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
-        return new AdvanceShredderMenu(containerId, inventory, this, this.data);
+        return new JuiceExtractorMenu(containerId, inventory, this, this.data);
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide) return;
 
-        Optional<AdvanceShredderRecipe> advanceRecipe = getRecipe(DTRecipe.ADVANCE_SHREDDER_RECIPE.get());
-        Optional<ShredderRecipe> basicRecipe = advanceRecipe.isPresent() ? Optional.empty() : getRecipe(DTRecipe.SHREDDER_RECIPE.get());
+        Optional<JuiceExtractorRecipe> advanceRecipe = getRecipe(DTRecipe.JUICE_EXTRACTOR_RECIPE.get());
 
-        if (advanceRecipe.isPresent() && hasRecipe(DTRecipe.ADVANCE_SHREDDER_RECIPE.get())) {
+        if (advanceRecipe.isPresent() && hasRecipe(DTRecipe.JUICE_EXTRACTOR_RECIPE.get())) {
             this.maxProgress = advanceRecipe.get().getProcessingTime() > 0 ?
                     advanceRecipe.get().getProcessingTime() : 20;
             this.data.set(1, this.maxProgress);
@@ -66,26 +61,6 @@ public class JuiceExtractorBlockEntity extends DTBaseProcessingBlockEntity imple
 
             if (progress >= maxProgress) {
                 craftItem(advanceRecipe.get());
-                resetProgress();
-            }
-        } else if (basicRecipe.isPresent() && hasRecipe(DTRecipe.SHREDDER_RECIPE.get())) {
-            // 基础配方统一使用20 ticks处理时间
-            this.maxProgress = 20;
-            this.data.set(1, this.maxProgress);
-
-            progress++;
-            this.data.set(0, this.progress);
-            setChanged();
-
-            if (progress >= maxProgress) {
-                craftItem(basicRecipe.get());
-                if (!level.isClientSide()&&DTConfig.switch_sound()) {
-                    level.playSound(null, pos,
-                            DTSounds.ZAOYIN.get(),
-                            SoundSource.BLOCKS,
-                            1.0F,
-                            1.0F);
-                }
                 resetProgress();
             }
         } else {

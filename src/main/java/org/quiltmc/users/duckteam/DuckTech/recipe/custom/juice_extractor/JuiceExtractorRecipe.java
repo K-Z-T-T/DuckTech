@@ -23,12 +23,12 @@ public class JuiceExtractorRecipe extends InputOutputRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return DTRecipeSerializers.ADVANCE_SHREDDER_SERIALIZER.get();
+        return DTRecipeSerializers.JUICE_EXTRACTOR_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return DTRecipe.ADVANCE_SHREDDER_RECIPE.get();
+        return DTRecipe.JUICE_EXTRACTOR_RECIPE.get();
     }
 
     public int getProcessingTime() {

@@ -16,6 +16,7 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.users.duckteam.DuckTech.blocks.FacingBlock;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.AdvanceShredderBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.JuiceExtractorBlockEntity;
 
 public class JuiceExtractor extends FacingBlock implements EntityBlock {
     public JuiceExtractor(Properties p_49795_) {
@@ -26,19 +27,19 @@ public class JuiceExtractor extends FacingBlock implements EntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-        return new AdvanceShredderBlockEntity(p_153215_, p_153216_);
+        return new JuiceExtractorBlockEntity(p_153215_, p_153216_);
     }
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState p_153213_, BlockEntityType<T> p_153214_) {
-        return level.isClientSide() ? null : (level1, pos, state, entity) -> ((AdvanceShredderBlockEntity)entity).tick(level1, pos, state);
+        return level.isClientSide() ? null : (level1, pos, state, entity) -> ((JuiceExtractorBlockEntity)entity).tick(level1, pos, state);
     }
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if ( !state.is(newState.getBlock())){
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof AdvanceShredderBlockEntity processorBlockEntity) {
+            if (blockEntity instanceof JuiceExtractorBlockEntity processorBlockEntity) {
                 processorBlockEntity.drops();
             }
         }
@@ -51,8 +52,8 @@ public class JuiceExtractor extends FacingBlock implements EntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!level.isClientSide){
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof AdvanceShredderBlockEntity advanceShredderBlockEntity) {
-                NetworkHooks.openScreen((ServerPlayer) player, advanceShredderBlockEntity , pos);
+            if (blockEntity instanceof JuiceExtractorBlockEntity bBlockEntity) {
+                NetworkHooks.openScreen((ServerPlayer) player, bBlockEntity , pos);
 
                 return InteractionResult.SUCCESS;
             }else {
