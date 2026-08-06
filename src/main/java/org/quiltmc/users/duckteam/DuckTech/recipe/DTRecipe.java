@@ -8,6 +8,7 @@ import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 import org.quiltmc.users.duckteam.DuckTech.recipe.custom.advanceshredder.AdvanceShredderRecipe;
 import org.quiltmc.users.duckteam.DuckTech.recipe.custom.essence_conversion_machine.EssenceConversionMachineRecipe;
 import org.quiltmc.users.duckteam.DuckTech.recipe.custom.injection_machine.InjectionMachineRecipe;
+import org.quiltmc.users.duckteam.DuckTech.recipe.custom.juice_extractor.JuiceExtractorRecipe;
 import org.quiltmc.users.duckteam.DuckTech.recipe.custom.shredder.ShredderRecipe;
 
 import java.util.function.Supplier;
@@ -44,5 +45,11 @@ public class DTRecipe {
             RECIPE_TYPES.register(
                     "injection_machine_recipe",
                     () -> RecipeType.<InjectionMachineRecipe>simple(ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "injection_machine_recipe"))
+            );
+
+    public static final Supplier<RecipeType<JuiceExtractorRecipe>>JUICE_EXTRACTOR_RECIPE =
+            RECIPE_TYPES.register(
+                    "juice_extractor_recipe",
+                    () -> RecipeType.<JuiceExtractorRecipe>simple(ResourceLocation.fromNamespaceAndPath(DuckTech.MODID, "juice_extractor_recipe"))
             );
 }

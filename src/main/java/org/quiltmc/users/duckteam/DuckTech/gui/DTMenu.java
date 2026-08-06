@@ -18,6 +18,7 @@ import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceMen
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenceMakerMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.juice_extractor.JuiceExtractorMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_earth_furnace.EssenceEarthFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerMenu;
@@ -90,4 +91,8 @@ public class DTMenu {
                         // 若获取不到，创建一个虚拟的 ContainerData 以免崩溃
                         return new EssenceEarthFurnaceMenu(windowId, inv, null, new SimpleContainerData(4));
                     }));
+
+    public static final RegistryObject<MenuType<JuiceExtractorMenu>> JUICE_EXTRACTOR_MENU =
+            MENUS.register("juice_extractor_menu", () -> IForgeMenuType.create(JuiceExtractorMenu::new
+            ));
 }

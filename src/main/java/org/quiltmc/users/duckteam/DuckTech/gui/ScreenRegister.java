@@ -12,6 +12,7 @@ import org.quiltmc.users.duckteam.DuckTech.gui.essence_earth_furnace.EssenceEart
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenceMakerScreen;
+import org.quiltmc.users.duckteam.DuckTech.gui.juice_extractor.JuiceExtractorScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.levitation.LevitationMachineScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.thermal_essence_maker.ThermalEssenceMakerScreen;
@@ -31,6 +32,7 @@ public class ScreenRegister {
             MenuScreens.register(DTMenu.THERMAL_ESSENCE_MAKER.get(), ThermalEssenceMakerScreen::new);
             MenuScreens.register(DTMenu.FROZEN_ESSENCE_MAKER_MENU.get(), FrozenEssenceMakerScreen::new);
             MenuScreens.register(DTMenu.ESSENCE_EARTH_FURNACE.get(), EssenceEarthFurnaceScreen::new);
+            MenuScreens.register(DTMenu.JUICE_EXTRACTOR_MENU.get(), JuiceExtractorScreen::new);
         });
     }
 }
