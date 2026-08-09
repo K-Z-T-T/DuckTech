@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderScreen;
+import org.quiltmc.users.duckteam.DuckTech.gui.essence_blast_furnace.EssenceBlastFurnaceScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_conversion_machine.EssenceConversionMachineScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_earth_furnace.EssenceEarthFurnaceScreen;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceScreen;
@@ -33,6 +34,7 @@ public class ScreenRegister {
             MenuScreens.register(DTMenu.FROZEN_ESSENCE_MAKER_MENU.get(), FrozenEssenceMakerScreen::new);
             MenuScreens.register(DTMenu.ESSENCE_EARTH_FURNACE.get(), EssenceEarthFurnaceScreen::new);
             MenuScreens.register(DTMenu.JUICE_EXTRACTOR_MENU.get(), JuiceExtractorScreen::new);
+            MenuScreens.register(DTMenu.ESSENCE_BLAST_FURNACE_MENU.get(), EssenceBlastFurnaceScreen::new);
         });
     }
 }
