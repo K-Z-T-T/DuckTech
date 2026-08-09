@@ -67,4 +67,8 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<JuiceExtractorBlockEntity>> JUICE_EXTRACTOR_BLOCK_ENTITY =
             BLOCK_ENTITY_TYPES.register("juice_extractor_block_entity", () -> BlockEntityType.Builder.of(
                     JuiceExtractorBlockEntity::new, DTBlocks.JUICE_EXTRACTOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<EssenceBlastFurnaceBlockEntity>> ESSENCE_BLAST_FURNACE_BLOCK_ENTITY =
+            BLOCK_ENTITY_TYPES.register("essence_blast_furnace_block_entity", () -> BlockEntityType.Builder.of(
+                    EssenceBlastFurnaceBlockEntity::new, DTBlocks.ESSENCE_BLAST_FURNACE.get()).build(null));
 }
