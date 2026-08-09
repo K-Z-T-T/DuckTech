@@ -80,17 +80,10 @@ public class DTMenu {
                             return new FrozenEssenceMakerMenu(windowId, inv, pos);
                         }
                     }));
+
     public static final RegistryObject<MenuType<EssenceEarthFurnaceMenu>> ESSENCE_EARTH_FURNACE =
             MENUS.register("essence_earth_furnace",
-                    () -> IForgeMenuType.create((windowId, inv, data) -> {
-                        BlockPos pos = data.readBlockPos();
-                        BlockEntity be = inv.player.level().getBlockEntity(pos);
-                        if (be instanceof EssenceEarthFurnaceBlockEntity furnace) {
-                            return new EssenceEarthFurnaceMenu(windowId, inv, furnace, furnace.getContainerData());
-                        }
-                        // 若获取不到，创建一个虚拟的 ContainerData 以免崩溃
-                        return new EssenceEarthFurnaceMenu(windowId, inv, null, new SimpleContainerData(4));
-                    }));
+                    () -> IForgeMenuType.create(EssenceEarthFurnaceMenu::new));
 
     public static final RegistryObject<MenuType<JuiceExtractorMenu>> JUICE_EXTRACTOR_MENU =
             MENUS.register("juice_extractor_menu", () -> IForgeMenuType.create(JuiceExtractorMenu::new
