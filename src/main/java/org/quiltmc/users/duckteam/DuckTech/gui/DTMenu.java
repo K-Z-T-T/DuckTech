@@ -16,6 +16,7 @@ import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderM
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_blast_furnace.EssenceBlastFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_conversion_machine.EssenceConversionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.expulsion_machine.ExpulsionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.fe2thermal_essence_machine.FE2ThermalEssenceMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.frozen_essence_maker.FrozenEssenceMakerMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.injection_machine.InjectionMachineMenu;
@@ -93,4 +94,8 @@ public class DTMenu {
     public static final RegistryObject<MenuType<EssenceBlastFurnaceMenu>> ESSENCE_BLAST_FURNACE_MENU =
             MENUS.register("essence_blast_furnace",
                     () -> IForgeMenuType.create(EssenceBlastFurnaceMenu::new));
+
+    public static final RegistryObject<MenuType<ExpulsionMachineMenu>> EXPULSION_MACHINE =
+            MENUS.register("expulsion_machine",
+                    () -> IForgeMenuType.create(ExpulsionMachineMenu::new));
 }
