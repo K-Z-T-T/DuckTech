@@ -75,4 +75,8 @@ public class DTBlockEntity {
     public static final RegistryObject<BlockEntityType<ExpulsionMachineBlockEntity>> EXPULSION_MACHINE =
             BLOCK_ENTITY_TYPES.register("expulsion_machine_block_entity", () -> BlockEntityType.Builder.of(
                     ExpulsionMachineBlockEntity::new, DTBlocks.EXPULSION_MACHINE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<AirPurifierBlockEntity>> AIR_PURIFIER_BE =
+            BLOCK_ENTITY_TYPES.register("air_purifier", () -> BlockEntityType.Builder.of(
+                    AirPurifierBlockEntity::new, DTBlocks.AIR_PURIFIER.get()).build(null));
 }
