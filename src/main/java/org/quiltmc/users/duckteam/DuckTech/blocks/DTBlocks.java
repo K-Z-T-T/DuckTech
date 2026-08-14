@@ -155,6 +155,10 @@ public class DTBlocks {
 
     public static final RegistryObject<Block> ESSENCE_BLAST_FURNACE = registerBlock("essence_blast_furnace", () -> new EssenceBlastFurnace(BlockBehaviour.Properties.of()));
 
+    public static final RegistryObject<Block> EXPULSION_MACHINE = registerBlock("expulsion_machine", () -> new ExpulsionMachine(BlockBehaviour.Properties.of()));
+
+    public static final RegistryObject<Block> AIR_PURIFIER = registerBlock("air_purifier", AirPurifier::new);
+
     public static RegistryObject<Block> registerSimpleBlock(String name, BlockBehaviour.Properties properties) {
         RegistryObject<Block> block = BLOCKS.register(name, () -> new Block(properties));
         DTItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
