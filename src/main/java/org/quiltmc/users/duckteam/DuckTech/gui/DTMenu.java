@@ -2,17 +2,16 @@ package org.quiltmc.users.duckteam.DuckTech.gui;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
-import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.EssenceEarthFurnaceBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FE2ThermalEssenceMachineBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.FrozenEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.blocks.blockentity.ThermalEssenceMakerBlockEntity;
 import org.quiltmc.users.duckteam.DuckTech.gui.advance_shredder.AdvanceShredderMenu;
+import org.quiltmc.users.duckteam.DuckTech.gui.air_purifier.AirPurifierMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_blast_furnace.EssenceBlastFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_conversion_machine.EssenceConversionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_furnace.EssenceFurnaceMenu;
@@ -98,4 +97,9 @@ public class DTMenu {
     public static final RegistryObject<MenuType<ExpulsionMachineMenu>> EXPULSION_MACHINE =
             MENUS.register("expulsion_machine",
                     () -> IForgeMenuType.create(ExpulsionMachineMenu::new));
+
+    public static final RegistryObject<MenuType<AirPurifierMenu>> AIR_PURIFIER_MENU =
+            MENUS.register("air_purifier",
+                    () -> IForgeMenuType.create((windowId, inv, data) ->
+                            new AirPurifierMenu(windowId, inv, data.readBlockPos())));
 }
