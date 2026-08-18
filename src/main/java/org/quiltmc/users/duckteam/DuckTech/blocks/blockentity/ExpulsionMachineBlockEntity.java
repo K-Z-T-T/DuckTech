@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
@@ -28,8 +29,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.config.DTConfig;
 import org.quiltmc.users.duckteam.DuckTech.gui.expulsion_machine.ExpulsionMachineMenu;
 import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
+import org.quiltmc.users.duckteam.DuckTech.sounds.DTSounds;
 
 public class ExpulsionMachineBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
     public static final int SLOT_COUNT = 1;
@@ -78,6 +81,13 @@ public class ExpulsionMachineBlockEntity extends BlockEntity implements MenuProv
             if (fuel.is(DTItems.VOID_ESSENCE.get())) {
                 fuel.shrink(1);
                 be.timer = MAX_TIMER;
+                if (!level.isClientSide()&& DTConfig.switch_sound()) {
+                    level.playSound(null, pos,
+                            DTSounds.ZAOYIN.get(),
+                            SoundSource.BLOCKS,
+                            1.0F,
+                            1.0F);
+                }
                 be.setChanged();
             }
         }
