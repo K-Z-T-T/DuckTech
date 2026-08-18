@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,8 +20,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.quiltmc.users.duckteam.DuckTech.DuckTech;
 import org.quiltmc.users.duckteam.DuckTech.blocks.DTBlockEntity;
+import org.quiltmc.users.duckteam.DuckTech.config.DTConfig;
 import org.quiltmc.users.duckteam.DuckTech.gui.essence_blast_furnace.EssenceBlastFurnaceMenu;
 import org.quiltmc.users.duckteam.DuckTech.items.DTItems;
+import org.quiltmc.users.duckteam.DuckTech.sounds.DTSounds;
 
 public class EssenceBlastFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
     private static final TagKey<Item> ORE_TAG =
@@ -48,6 +51,13 @@ public class EssenceBlastFurnaceBlockEntity extends AbstractFurnaceBlockEntity {
 
         // 检测烧炼完成：旧进度 > 0，新进度 == 0，且输出增加
         if (oldCookTime > 0 && newCookTime == 0) {
+            if (!level.isClientSide()&& DTConfig.switch_sound()) {
+                level.playSound(null, pos,
+                        DTSounds.ZAOYIN.get(),
+                        SoundSource.BLOCKS,
+                        1.0F,
+                        1.0F);
+            }
             int added = newOutputCount - oldOutputCount;
             if (added > 0) {
                 ItemStack output = furnace.getItem(2);
